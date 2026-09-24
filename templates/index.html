@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ResolveAI classifies civic complaints and detects priority using classical NLP.">
+  <title>ResolveAI — Smart Complaint Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <nav class="shell"><a class="logo" href="/"><i>R</i> ResolveAI</a><span>CLASSICAL NLP · LIVE</span></nav>
+  <main>
+    <section class="hero shell">
+      <div class="hero-copy">
+        <p class="tag">SMART GRIEVANCE ROUTING</p>
+        <h1>Every complaint,<br><em>sent the right way.</em></h1>
+        <p>Write a civic complaint in natural language. ResolveAI detects the responsible department, estimates urgency and surfaces the words driving its decision.</p>
+        <a href="#analyser" class="cta">Analyse a complaint <b>↘</b></a>
+      </div>
+      <div class="routing-card">
+        <div class="route-head"><span>INCOMING TEXT</span><i></i><span>SMART ROUTING</span></div>
+        <p>“There is an exposed electrical wire near the school. Children are at risk...”</p>
+        <div class="route-result"><span>ROUTE TO</span><strong>Electricity</strong><b>URGENT · 94%</b></div>
+        <div class="scan"></div>
+      </div>
+    </section>
+
+    <section class="pipeline">
+      <div class="shell pipeline-inner">
+        <span>01 · CLEAN TEXT</span><b>→</b><span>02 · TF-IDF</span><b>→</b><span>03 · N-GRAMS</span><b>→</b><span>04 · CLASSIFY</span>
+      </div>
+    </section>
+
+    <section id="analyser" class="analyser shell">
+      <div class="section-title"><div><p class="tag">TRY THE MODEL</p><h2>Complaint analyser</h2></div><p>No account needed. The text is processed only for the current prediction.</p></div>
+      <div class="workspace">
+        <form id="form" class="input-panel">
+          <label for="complaint">DESCRIBE THE ISSUE</label>
+          <textarea id="complaint" maxlength="2500" placeholder="Example: The garbage has not been collected from our lane for five days and the overflowing bins are causing a severe smell..." required></textarea>
+          <div class="input-foot"><span><b id="count">0</b>/2500 characters</span><button id="analyse" type="submit">Run NLP analysis <b>→</b></button></div>
+          <p id="error" class="error"></p>
+          <div class="examples"><span>TRY AN EXAMPLE</span><button type="button">Power cut</button><button type="button">Water leak</button><button type="button">Pothole</button></div>
+        </form>
+
+        <div id="empty" class="empty-panel"><div class="radar"><i></i><i></i><i></i><b>R</b></div><p>Your classification report will appear here.</p></div>
+        <div id="result" class="result-panel hidden">
+          <div class="result-head"><span>PREDICTED DEPARTMENT</span><b id="priority">NORMAL</b></div>
+          <h3 id="category">—</h3>
+          <p class="confidence"><span id="confidence">0%</span> classification confidence</p>
+          <div class="meter"><i id="confidence-bar"></i></div>
+          <div class="metric-grid"><div><span>URGENCY SCORE</span><strong id="urgency">0%</strong></div><div><span>KEY TERMS</span><div id="keywords" class="chips"></div></div></div>
+          <div class="ranking"><h4>ALTERNATIVE ROUTES</h4><div id="ranking"></div></div>
+          <div class="similar"><span>MOST SIMILAR KNOWN COMPLAINT</span><p id="similar-text"></p><small id="similar-meta"></small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features shell">
+      <article><b>01</b><h3>Category routing</h3><p>Routes complaints across six civic service departments.</p></article>
+      <article><b>02</b><h3>Priority detection</h3><p>Separately estimates whether immediate attention is required.</p></article>
+      <article><b>03</b><h3>Explainable output</h3><p>Shows weighted keywords, confidence and similar examples.</p></article>
+    </section>
+  </main>
+  <footer class="shell"><a class="logo" href="/"><i>R</i> ResolveAI</a><p>TF-IDF · Logistic Regression · Cosine Similarity</p></footer>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
+
